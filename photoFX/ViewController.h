@@ -7,8 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+//#import <MTImageCore/ToolCosmeticSelector.h>
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController <UINavigationBarDelegate, UINavigationControllerDelegate,  UIImagePickerControllerDelegate, UIActionSheetDelegate>{
+    
+    UIImage *originImage;
+}
+
+@property(nonatomic, weak) IBOutlet UIImageView *selectedImageView;
+@property(nonatomic, weak) IBOutlet UIBarButtonItem *filterButton;
+@property(nonatomic, weak) IBOutlet UIBarButtonItem *saveButton;
+
+- (IBAction)photoFromAlbum;
+- (IBAction)photoFromCamera;
+- (IBAction)applyImageFilter:(id)sender;
+- (IBAction)saveImageToAlbum;
 
 
 @end

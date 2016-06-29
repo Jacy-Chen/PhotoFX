@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import <AWSCore/AWSCore.h>
+
 
 @interface AppDelegate ()
 
@@ -17,6 +20,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Connecting to my Parse Server and get the Application
+    [Parse setApplicationId:@"Your_App_ID"
+                  clientKey:@"Your_Parse_Key"];
+    
+    //Connecting to the AWS Server
+    /*******************************************************************/
+    // Initialize the Amazon Cognito credentials provider
+    NSString *const CognitoIdentityPoolId =@"Your_Cognito_ID";
+   
+    AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1 identityPoolId:CognitoIdentityPoolId];
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    /*******************************************************************/
+
+    
+    
     return YES;
 }
 
